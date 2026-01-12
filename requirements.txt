@@ -1,0 +1,14 @@
+# FastAPI and dependencies - latest versions for Python 3.14 support
+fastapi==0.115.6
+pydantic==2.10.6
+uvicorn[standard]==0.34.0
+
+# Testing (will be used in Phase 2)
+pytest==8.3.4
+httpx==0.28.1
+
+# Code quality (will be used in Phase 3)
+ruff==0.9.1
+
+# Generated on: 2025-01-11
+# Using latest versions with Python 3.14 wheel support
