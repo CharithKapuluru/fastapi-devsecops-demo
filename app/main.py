@@ -82,7 +82,7 @@ async def create_item(item_data: ItemCreate) -> Item:
         raise HTTPException(
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
             detail="Failed to create item",
-        )
+        ) from e
 
 
 @app.exception_handler(Exception)
