@@ -66,8 +66,7 @@ class TestGetItemsEndpoint:
         """Test that GET /items returns items after they are created."""
         # First, create an item
         create_response = client.post(
-            "/items",
-            json={"name": "Test Item", "description": "Test description"}
+            "/items", json={"name": "Test Item", "description": "Test description"}
         )
         assert create_response.status_code == 201
 
@@ -112,10 +111,7 @@ class TestPostItemsEndpoint:
 
     def test_create_item_with_name_and_description(self):
         """Test creating an item with both name and description."""
-        item_data = {
-            "name": "Laptop",
-            "description": "MacBook Pro 16-inch"
-        }
+        item_data = {"name": "Laptop", "description": "MacBook Pro 16-inch"}
 
         response = client.post("/items", json=item_data)
 
@@ -130,9 +126,7 @@ class TestPostItemsEndpoint:
 
     def test_create_item_with_only_name(self):
         """Test creating an item with only name (description optional)."""
-        item_data = {
-            "name": "Phone"
-        }
+        item_data = {"name": "Phone"}
 
         response = client.post("/items", json=item_data)
 
@@ -145,9 +139,7 @@ class TestPostItemsEndpoint:
 
     def test_create_item_without_name_fails(self):
         """Test that creating an item without name returns validation error."""
-        item_data = {
-            "description": "This has no name"
-        }
+        item_data = {"description": "This has no name"}
 
         response = client.post("/items", json=item_data)
 
@@ -160,15 +152,14 @@ class TestPostItemsEndpoint:
 
         # Check that the error mentions the missing 'name' field
         assert any(
-            err["loc"] == ["body", "name"] and err["type"] == "missing"
-            for err in error["detail"]
+            err["loc"] == ["body", "name"] and err["type"] == "missing" for err in error["detail"]
         )
 
     def test_create_item_with_empty_name_fails(self):
         """Test that creating an item with empty name fails validation."""
         item_data = {
             "name": "",  # Empty string
-            "description": "Empty name"
+            "description": "Empty name",
         }
 
         response = client.post("/items", json=item_data)
@@ -180,7 +171,7 @@ class TestPostItemsEndpoint:
         """Test that creating an item with wrong data type fails."""
         item_data = {
             "name": 12345,  # Should be string, not number
-            "description": "Wrong type"
+            "description": "Wrong type",
         }
 
         response = client.post("/items", json=item_data)
@@ -226,10 +217,7 @@ class TestItemValidation:
         # Name should be max 100 characters
         long_name = "a" * 101  # 101 characters
 
-        response = client.post(
-            "/items",
-            json={"name": long_name}
-        )
+        response = client.post("/items", json={"name": long_name})
 
         assert response.status_code == 422
 
@@ -239,8 +227,7 @@ class TestItemValidation:
         long_description = "a" * 501  # 501 characters
 
         response = client.post(
-            "/items",
-            json={"name": "Valid Name", "description": long_description}
+            "/items", json={"name": "Valid Name", "description": long_description}
         )
 
         assert response.status_code == 422
@@ -249,10 +236,7 @@ class TestItemValidation:
         """Test that name at exactly max length (100 chars) works."""
         max_name = "a" * 100  # Exactly 100 characters
 
-        response = client.post(
-            "/items",
-            json={"name": max_name}
-        )
+        response = client.post("/items", json={"name": max_name})
 
         assert response.status_code == 201
         assert response.json()["name"] == max_name
@@ -261,10 +245,7 @@ class TestItemValidation:
         """Test that description at exactly max length (500 chars) works."""
         max_description = "a" * 500  # Exactly 500 characters
 
-        response = client.post(
-            "/items",
-            json={"name": "Test", "description": max_description}
-        )
+        response = client.post("/items", json={"name": "Test", "description": max_description})
 
         assert response.status_code == 201
         assert response.json()["description"] == max_description
@@ -289,10 +270,7 @@ class TestAPIResponseFormat:
 
     def test_created_item_has_all_fields(self):
         """Test that created item response includes all expected fields."""
-        response = client.post(
-            "/items",
-            json={"name": "Complete Item", "description": "Full test"}
-        )
+        response = client.post("/items", json={"name": "Complete Item", "description": "Full test"})
 
         data = response.json()
 
