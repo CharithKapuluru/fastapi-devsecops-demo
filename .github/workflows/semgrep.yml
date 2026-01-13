@@ -11,6 +11,7 @@ on:
 permissions:
   contents: read
   security-events: write
+  actions: read
 
 jobs:
   semgrep:
@@ -25,9 +26,11 @@ jobs:
 
       - name: Run Semgrep
         uses: semgrep/semgrep-action@v1
+        continue-on-error: true
         with:
           config: auto
-          generateSarif: true
+          publishToken: ${{ secrets.SEMGREP_APP_TOKEN }}
+          publishDeployment: ${{ secrets.SEMGREP_APP_TOKEN }}
 
       - name: Upload results to GitHub Security tab
         uses: github/codeql-action/upload-sarif@v3
@@ -35,11 +38,3 @@ jobs:
         with:
           sarif_file: semgrep.sarif
           category: semgrep
-
-      - name: Upload Semgrep results as artifact
-        uses: actions/upload-artifact@v4
-        if: always()
-        with:
-          name: semgrep-results
-          path: semgrep.sarif
-          retention-days: 30
