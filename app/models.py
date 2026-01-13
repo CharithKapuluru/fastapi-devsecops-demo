@@ -4,10 +4,10 @@ from pydantic import BaseModel, Field
 
 
 class ItemCreate(BaseModel):
-    """Model for creating a new item."""
+    """Item creation request."""
 
-    name: str = Field(..., min_length=1, max_length=100, description="Item name (required)")
-    description: str | None = Field(None, max_length=500, description="Item description (optional)")
+    name: str = Field(..., min_length=1, max_length=100, description="Item name")
+    description: str | None = Field(None, max_length=500, description="Item description")
 
     model_config = {
         "json_schema_extra": {
@@ -22,9 +22,9 @@ class ItemCreate(BaseModel):
 
 
 class Item(BaseModel):
-    """Model representing an item with an ID."""
+    """Item with ID."""
 
-    id: int = Field(..., description="Unique item identifier")
+    id: int = Field(..., description="Item ID")
     name: str = Field(..., description="Item name")
     description: str | None = Field(None, description="Item description")
 

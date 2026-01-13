@@ -5,25 +5,24 @@
 [![Trivy Security](https://github.com/CharithKapuluru/fastapi-devsecops-demo/actions/workflows/trivy.yml/badge.svg)](https://github.com/CharithKapuluru/fastapi-devsecops-demo/actions/workflows/trivy.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-A production-ready FastAPI microservice demonstrating **DevSecOps best practices** with automated security scanning, CI/CD, and containerization. Built to showcase cloud-native development skills for **Cloud Engineer**, **DevOps Engineer**, and **DevSecOps Engineer** roles.
+A FastAPI microservice demonstrating DevSecOps practices including automated security scanning, CI/CD pipelines, and containerization. Designed for Cloud Engineer, DevOps Engineer, and DevSecOps Engineer positions.
 
----
+## Overview
 
-## 🎯 Project Highlights
+This project implements a REST API with automated testing, code quality checks, Docker containerization, and integrated security scanning. The CI/CD pipeline automatically runs tests, builds containers, and performs security analysis on every commit.
 
-- ✅ **RESTful API** with FastAPI (OpenAPI/Swagger docs auto-generated)
-- ✅ **Comprehensive Testing** with pytest (18 tests, 100% pass rate)
-- ✅ **Code Quality** with Ruff linting and formatting
-- ✅ **Containerization** with Docker (optimized multi-stage builds)
-- ✅ **CI/CD Pipeline** with GitHub Actions (automated testing and deployment)
-- ✅ **Security Scanning** with Semgrep (SAST for code vulnerabilities)
-- ✅ **Container Security** with Trivy (vulnerability and misconfiguration detection)
-- ✅ **Production Logging** with structured JSON logs
-- ✅ **Health Checks** built-in for orchestration platforms
+**Key Features:**
+- RESTful API with FastAPI and automatic OpenAPI documentation
+- Test coverage with pytest (18 tests)
+- Code quality enforcement with Ruff
+- Docker containerization with optimized builds
+- GitHub Actions CI/CD automation
+- SAST security scanning with Semgrep
+- Container vulnerability scanning with Trivy
+- Structured JSON logging
+- Built-in health checks
 
----
-
-## 🏗️ Architecture
+## Architecture
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
@@ -39,47 +38,42 @@ A production-ready FastAPI microservice demonstrating **DevSecOps best practices
                             ↓
 ┌─────────────────────────────────────────────────────────────┐
 │             GitHub Container Registry (ghcr.io)             │
-│  🐳 fastapi-devsecops-demo:latest                          │
-│     - Python 3.12 runtime                                   │
-│     - FastAPI application                                   │
-│     - Production dependencies                               │
+│  fastapi-devsecops-demo:latest                              │
 └─────────────────────────────────────────────────────────────┘
                             ↓
 ┌─────────────────────────────────────────────────────────────┐
 │                   Deployment Target                         │
 │  AWS ECS | Google Cloud Run | Azure Container Instances    │
-│  Kubernetes | Docker Swarm | Any container platform        │
+│  Kubernetes | Docker Swarm                                  │
 └─────────────────────────────────────────────────────────────┘
 ```
 
----
-
-## 🚀 Quick Start
+## Quick Start
 
 ### Prerequisites
 
 - Python 3.12+
-- Docker (optional, for containerized deployment)
+- Docker (optional)
 - Git
 
 ### Local Development
 
 ```bash
-# Clone the repository
+# Clone repository
 git clone https://github.com/CharithKapuluru/fastapi-devsecops-demo.git
 cd fastapi-devsecops-demo
 
 # Create virtual environment
 python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
+source venv/bin/activate  # Windows: venv\Scripts\activate
 
 # Install dependencies
 pip install -r requirements.txt
 
-# Run the application
+# Run application
 uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
 
-# Access the API
+# Access API
 # - API: http://localhost:8000
 # - Swagger UI: http://localhost:8000/docs
 # - ReDoc: http://localhost:8000/redoc
@@ -88,39 +82,37 @@ uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
 ### Docker Deployment
 
 ```bash
-# Build the Docker image
+# Build image
 docker build -t fastapi-devsecops-demo:latest .
 
-# Run the container
+# Run container
 docker run -d -p 8000:8000 --name fastapi-app fastapi-devsecops-demo:latest
 
-# Or use the published image
+# Or use published image
 docker pull ghcr.io/charithkapuluru/fastapi-devsecops-demo:latest
 docker run -d -p 8000:8000 ghcr.io/charithkapuluru/fastapi-devsecops-demo:latest
 ```
 
-### Using Makefile
+### Makefile Commands
 
 ```bash
-make help          # Show all available commands
+make help          # Show available commands
 make run           # Run locally
 make test          # Run tests
 make lint          # Run linting
 make format        # Format code
 make docker-build  # Build Docker image
 make docker-run    # Run Docker container
-make docker-stop   # Stop and remove container
+make docker-stop   # Stop container
 ```
 
----
-
-## 📡 API Endpoints
+## API Endpoints
 
 ### Health Check
 ```bash
 GET /health
 ```
-Returns service health status. Used by load balancers and orchestration platforms.
+Returns service health status for load balancers and orchestration platforms.
 
 **Response:**
 ```json
@@ -133,7 +125,7 @@ Returns service health status. Used by load balancers and orchestration platform
 ```bash
 GET /items
 ```
-Retrieves all items from the in-memory database.
+Retrieves all items from in-memory storage.
 
 **Response:**
 ```json
@@ -157,8 +149,6 @@ Content-Type: application/json
 }
 ```
 
-Creates a new item with auto-incrementing ID.
-
 **Validation:**
 - `name`: Required, 1-100 characters
 - `description`: Optional, max 500 characters
@@ -172,38 +162,29 @@ Creates a new item with auto-incrementing ID.
 }
 ```
 
----
+## Tech Stack
 
-## 🔧 Tech Stack
+**Core:**
+- Python 3.12
+- FastAPI 0.115+
+- Pydantic 2.10+
+- Uvicorn 0.34+
 
-### Core Technologies
-- **Python 3.12** - Modern Python with type hints
-- **FastAPI 0.115+** - High-performance async web framework
-- **Pydantic 2.10+** - Data validation using Python type annotations
-- **Uvicorn 0.34+** - Lightning-fast ASGI server
+**Development:**
+- Pytest 8.3+
+- Ruff 0.9+
+- Docker
+- Make
 
-### Development Tools
-- **Pytest 8.3+** - Comprehensive testing framework
-- **Ruff 0.9+** - Ultra-fast Python linter and formatter
-- **Docker** - Containerization platform
-- **Make** - Build automation
+**CI/CD & Security:**
+- GitHub Actions
+- Semgrep (SAST)
+- Trivy (Container scanning)
+- GitHub Container Registry
 
-### CI/CD & Security
-- **GitHub Actions** - CI/CD automation
-- **Semgrep** - Static application security testing (SAST)
-- **Trivy** - Container vulnerability scanning
-- **GitHub Container Registry** - Docker image hosting
+## Testing
 
----
-
-## 🧪 Testing
-
-The project includes 18 comprehensive tests covering:
-- Health endpoint functionality
-- Item creation and retrieval
-- Input validation (positive and negative cases)
-- Edge cases (empty lists, max length, invalid types)
-- API response formats
+The project includes 18 tests covering health checks, CRUD operations, input validation, edge cases, and API response formats.
 
 ```bash
 # Run all tests
@@ -221,126 +202,114 @@ pytest tests/test_api.py::TestHealthEndpoint -v
 18 passed in 0.33s
 ```
 
----
+## Security
 
-## 🔐 Security Features
-
-### 1. Semgrep SAST Scanning
-Automated static analysis for security vulnerabilities:
+### Semgrep SAST Scanning
+Automated static analysis detecting:
 - SQL injection patterns
 - Cross-Site Scripting (XSS)
 - Hardcoded secrets
 - Insecure cryptography
 - Command injection
-- OWASP Top 10 coverage
+- OWASP Top 10 vulnerabilities
 
-**Configuration:** `.github/workflows/semgrep.yml`
+Configuration: `.github/workflows/semgrep.yml`
 
-### 2. Trivy Container Scanning
-Comprehensive container security:
+### Trivy Container Scanning
+Container security analysis for:
 - OS package vulnerabilities (Debian)
 - Python dependency vulnerabilities
-- Dockerfile misconfiguration detection
+- Dockerfile misconfiguration
 - Hardcoded secrets in image layers
 
-**Configuration:** `.github/workflows/trivy.yml`
+Configuration: `.github/workflows/trivy.yml`
 
-### 3. Code Quality Enforcement
-- Ruff linting (700+ rule checks)
+### Code Quality
+- Ruff linting with 700+ rule checks
 - Automated formatting validation
 - Type checking with Pydantic
 - Input validation on all endpoints
 
-**View Security Results:** Check the **Security** tab on GitHub for detailed findings.
+View security results in the **Security** tab on GitHub.
 
----
+## CI/CD Pipeline
 
-## 🔄 CI/CD Pipeline
-
-The project uses GitHub Actions for automated CI/CD:
-
-### CI/CD Workflow (`ci.yml`)
+### CI/CD Workflow (ci.yml)
 **Triggers:** Push to main, Pull Requests
 
 **Jobs:**
-1. **Lint and Test**
+1. Lint and Test
    - Ruff linting checks
    - Ruff formatting validation
-   - Pytest test suite (18 tests)
+   - Pytest test suite
 
-2. **Build and Push Docker** (main branch only)
-   - Build Docker image with BuildKit
+2. Build and Push Docker (main branch only)
+   - Build with BuildKit
    - Push to GitHub Container Registry
-   - Tag with: `latest`, `main`, `main-<sha>`
+   - Tag: latest, main, main-sha
 
 ### Security Workflows
 
-**Semgrep Scan** (`semgrep.yml`)
-- Runs on: Push, PR, Daily (6 AM UTC)
-- Scans: Python code for security vulnerabilities
-- Output: GitHub Security tab (SARIF format)
+**Semgrep (semgrep.yml)**
+- Runs: Push, PR, Daily at 6 AM UTC
+- Scans: Python code
+- Output: GitHub Security tab (SARIF)
 
-**Trivy Scan** (`trivy.yml`)
-- Runs on: Push, PR, Weekly (Sundays)
+**Trivy (trivy.yml)**
+- Runs: Push, PR, Weekly on Sundays
 - Scans: Docker image and Dockerfile
-- Output: GitHub Security tab (SARIF format)
+- Output: GitHub Security tab (SARIF)
 
----
-
-## 📁 Project Structure
+## Project Structure
 
 ```
 fastapi-devsecops-demo/
-├── app/                      # Application source code
-│   ├── __init__.py          # Package marker
-│   ├── config.py            # Configuration and logging
-│   ├── main.py              # FastAPI application and endpoints
-│   └── models.py            # Pydantic models
-├── tests/                    # Test suite
+├── app/
 │   ├── __init__.py
-│   └── test_api.py          # API endpoint tests (18 tests)
+│   ├── config.py
+│   ├── main.py
+│   └── models.py
+├── tests/
+│   ├── __init__.py
+│   └── test_api.py
 ├── .github/
-│   └── workflows/           # CI/CD workflows
-│       ├── ci.yml           # Main CI/CD pipeline
-│       ├── semgrep.yml      # Security scanning (SAST)
-│       └── trivy.yml        # Container security scanning
-├── Dockerfile               # Multi-stage Docker build
-├── .dockerignore            # Docker build exclusions
-├── .gitignore               # Git exclusions
-├── .semgrepignore           # Semgrep exclusions
-├── .trivyignore             # Trivy exclusions
-├── Makefile                 # Build automation commands
-├── pyproject.toml           # Ruff configuration
-├── requirements.txt         # Python dependencies
-└── README.md                # This file
+│   └── workflows/
+│       ├── ci.yml
+│       ├── semgrep.yml
+│       └── trivy.yml
+├── Dockerfile
+├── .dockerignore
+├── .gitignore
+├── .semgrepignore
+├── .trivyignore
+├── Makefile
+├── pyproject.toml
+├── requirements.txt
+├── LICENSE
+└── README.md
 ```
 
----
+## Docker
 
-## 🐳 Docker Details
+**Image Specifications:**
+- Base: python:3.12-slim
+- Size: ~190MB
+- Port: 8000
+- Health Check: 30s interval
 
-### Image Specifications
-- **Base Image:** `python:3.12-slim` (Debian-based, minimal)
-- **Final Size:** ~190MB (optimized)
-- **Exposed Port:** 8000
-- **Health Check:** Automatic (30s interval)
-- **User:** Root (can be changed for enhanced security)
+**Features:**
+- Layer caching for fast rebuilds
+- Non-buffered output for real-time logs
+- No bytecode files for smaller size
+- Automated health checks
 
-### Dockerfile Highlights
-- Layer caching optimization for fast rebuilds
-- Non-buffered Python output for real-time logs
-- No `.pyc` files for reduced image size
-- Automated health checks via `/health` endpoint
+**Environment:**
+- `PYTHONDONTWRITEBYTECODE=1`
+- `PYTHONUNBUFFERED=1`
 
-### Environment Variables
-- `PYTHONDONTWRITEBYTECODE=1` - Disable bytecode generation
-- `PYTHONUNBUFFERED=1` - Enable real-time log output
+## Logging
 
----
-
-## 📊 Logging
-
-The application uses structured JSON logging for production observability:
+Structured JSON logging for observability:
 
 ```json
 {
@@ -351,93 +320,71 @@ The application uses structured JSON logging for production observability:
 }
 ```
 
-**Benefits:**
-- Machine-parseable format
-- Easy integration with log aggregators (CloudWatch, Datadog, Splunk)
-- Searchable and filterable
-- Production-ready
+Easy integration with CloudWatch, Datadog, Splunk, and other log aggregators.
 
----
+## Future Enhancements
 
-## 🚧 Future Enhancements
+- PostgreSQL database integration
+- JWT authentication
+- Rate limiting middleware
+- Extended test coverage
+- Integration tests
+- Cloud deployment (AWS/GCP/Azure)
+- Prometheus metrics
+- Redis caching
+- OpenTelemetry tracing
+- Kubernetes manifests
 
-- [ ] Add PostgreSQL database integration
-- [ ] Implement authentication (JWT tokens)
-- [ ] Add rate limiting middleware
-- [ ] Expand test coverage to 100%
-- [ ] Add integration tests
-- [ ] Deploy to AWS/GCP/Azure
-- [ ] Add Prometheus metrics endpoint
-- [ ] Implement caching with Redis
-- [ ] Add OpenTelemetry tracing
-- [ ] Create Kubernetes manifests
+## Development Workflow
 
----
-
-## 📝 Development Workflow
-
-1. **Create feature branch**
+1. Create feature branch
    ```bash
    git checkout -b feature/new-feature
    ```
 
-2. **Make changes and test locally**
+2. Make changes and test
    ```bash
-   make lint    # Check code quality
-   make test    # Run tests
-   make format  # Auto-format code
+   make lint
+   make test
+   make format
    ```
 
-3. **Commit and push**
+3. Commit and push
    ```bash
    git add .
    git commit -m "feat: add new feature"
    git push origin feature/new-feature
    ```
 
-4. **Create Pull Request**
-   - Automated checks will run (lint, test, security scans)
-   - Review results in GitHub Actions
-   - Merge when all checks pass
+4. Create Pull Request
+   - Automated checks run
+   - Review results
+   - Merge when passing
 
-5. **Automatic Deployment**
-   - On merge to main, Docker image is built and pushed
-   - Available at `ghcr.io/charithkapuluru/fastapi-devsecops-demo:latest`
+5. Automatic deployment to container registry
 
----
+## Contributing
 
-## 🤝 Contributing
-
-This is a portfolio demonstration project. For suggestions or improvements:
+This is a portfolio project. For suggestions:
 
 1. Fork the repository
 2. Create a feature branch
-3. Make your changes
+3. Make changes
 4. Submit a pull request
 
----
+## License
 
-## 📄 License
+MIT License - see LICENSE file for details.
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
----
-
-## 👤 Author
+## Author
 
 **Charith Kapuluru**
 - GitHub: [@CharithKapuluru](https://github.com/CharithKapuluru)
-- LinkedIn: [Connect with me](https://linkedin.com/in/charithkapuluru)
+- LinkedIn: [charithkapuluru](https://linkedin.com/in/charithkapuluru)
 
----
-
-## 🙏 Acknowledgments
+## Acknowledgments
 
 - FastAPI documentation and community
-- GitHub Actions for CI/CD automation
-- Semgrep and Trivy for security tooling
-- Open-source community for excellent tools and libraries
-
----
-
-**Built with Python 🐍 | Secured with DevSecOps 🔐 | Deployed with Docker 🐳**
+- GitHub Actions
+- Semgrep and Trivy
+- Open-source community

@@ -8,24 +8,14 @@ from app.main import app, items_db, next_item_id
 
 @pytest.fixture(autouse=True)
 def reset_items_db():
-    """Reset the in-memory database before each test.
-
-    This ensures test isolation - each test starts with a clean slate.
-    """
-    # Clear all items from the database
+    """Reset database before each test."""
     items_db.clear()
-
-    # Reset the ID counter to 1
     next_item_id[0] = 1
-
-    yield  # Run the test
-
-    # Cleanup after test (optional, but good practice)
+    yield
     items_db.clear()
     next_item_id[0] = 1
 
 
-# Create a test client
 client = TestClient(app)
 
 
@@ -36,10 +26,8 @@ class TestHealthEndpoint:
         """Test that GET /health returns status ok."""
         response = client.get("/health")
 
-        # Check status code
         assert response.status_code == 200
 
-        # Check response body
         assert response.json() == {"status": "ok"}
 
     def test_health_check_returns_json(self):
@@ -56,10 +44,8 @@ class TestGetItemsEndpoint:
         """Test that GET /items returns empty list when no items exist."""
         response = client.get("/items")
 
-        # Check status code
         assert response.status_code == 200
 
-        # Check it returns an empty list
         assert response.json() == []
 
     def test_get_items_with_data(self):
@@ -76,10 +62,8 @@ class TestGetItemsEndpoint:
         assert response.status_code == 200
         items = response.json()
 
-        # Should have 1 item
         assert len(items) == 1
 
-        # Check the item data
         assert items[0]["name"] == "Test Item"
         assert items[0]["description"] == "Test description"
         assert items[0]["id"] == 1
@@ -97,10 +81,8 @@ class TestGetItemsEndpoint:
         assert response.status_code == 200
         items = response.json()
 
-        # Should have 3 items
         assert len(items) == 3
 
-        # Check IDs are sequential
         assert items[0]["id"] == 1
         assert items[1]["id"] == 2
         assert items[2]["id"] == 3
@@ -146,11 +128,9 @@ class TestPostItemsEndpoint:
         # Should return 422 Unprocessable Entity (validation error)
         assert response.status_code == 422
 
-        # Check error details
         error = response.json()
         assert "detail" in error
 
-        # Check that the error mentions the missing 'name' field
         assert any(
             err["loc"] == ["body", "name"] and err["type"] == "missing" for err in error["detail"]
         )
@@ -274,7 +254,6 @@ class TestAPIResponseFormat:
 
         data = response.json()
 
-        # Check all required fields exist
         assert "id" in data
         assert "name" in data
         assert "description" in data
