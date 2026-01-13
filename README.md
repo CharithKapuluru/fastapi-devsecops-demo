@@ -380,7 +380,7 @@ MIT License - see LICENSE file for details.
 
 **Charith Kapuluru**
 - GitHub: [@CharithKapuluru](https://github.com/CharithKapuluru)
-- LinkedIn: [charithkapuluru](https://linkedin.com/in/charithkapuluru)
+- LinkedIn: [linkedin.com/in/charith-kapuluru-159456329](https://www.linkedin.com/in/charith-kapuluru-159456329/)
 
 ## Acknowledgments
 
