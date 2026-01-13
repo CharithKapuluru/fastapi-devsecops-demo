@@ -1,0 +1,20 @@
+# Trivy ignore patterns
+# Use this file to suppress known/accepted vulnerabilities
+
+# IMPORTANT NOTE:
+# Base image vulnerabilities are EXPECTED and NORMAL for python:3.12-slim
+# These are vulnerabilities in the Debian base OS that:
+# 1. May not affect our application (no code path to exploit)
+# 2. Are waiting for upstream Debian/Python patches
+# 3. Are assessed as low-risk for our use case
+#
+# This is standard in production - you document and accept known risks
+# rather than blocking deployments for vulnerabilities you can't fix.
+
+# Example: Ignore specific CVEs (uncomment to use)
+# CVE-2024-12345  # Brief explanation of why it's safe to ignore
+# CVE-2024-67890  # E.g., "Affects package X which we don't use"
+
+# For now, we're NOT ignoring any CVEs
+# All findings will be visible in GitHub Security tab for transparency
+# Recruiters can see we're aware of security, not hiding issues
