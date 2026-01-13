@@ -1,0 +1,43 @@
+# Semgrep ignore patterns
+# Exclude files and directories that don't need security scanning
+
+# Dependencies and virtual environments
+venv/
+env/
+.venv/
+node_modules/
+
+# Test files (optional - you can scan tests if you want)
+tests/
+test_*.py
+*_test.py
+
+# Build artifacts
+build/
+dist/
+*.egg-info/
+
+# Documentation
+docs/
+*.md
+
+# Configuration files
+.git/
+.github/
+*.yml
+*.yaml
+
+# IDE and editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Python bytecode
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Ruff cache
+.ruff_cache/

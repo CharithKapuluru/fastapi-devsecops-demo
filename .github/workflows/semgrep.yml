@@ -1,0 +1,57 @@
+name: Semgrep Security Scan
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  # Run daily at 6 AM UTC to catch new vulnerabilities
+  schedule:
+    - cron: '0 6 * * *'
+
+# Required for uploading results to GitHub Security tab
+permissions:
+  contents: read
+  security-events: write
+
+jobs:
+  semgrep:
+    name: Semgrep SAST Scan
+    runs-on: ubuntu-latest
+
+    # Skip if commit message contains [skip-security]
+    if: "!contains(github.event.head_commit.message, '[skip-security]')"
+
+    container:
+      # Use official Semgrep Docker image
+      image: semgrep/semgrep
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Run Semgrep scan
+        run: |
+          semgrep scan \
+            --config auto \
+            --sarif \
+            --output semgrep-results.sarif \
+            --verbose
+        env:
+          # Semgrep App token for advanced features (optional)
+          # SEMGREP_APP_TOKEN: ${{ secrets.SEMGREP_APP_TOKEN }}
+
+      - name: Upload results to GitHub Security tab
+        uses: github/codeql-action/upload-sarif@v3
+        if: always()
+        with:
+          sarif_file: semgrep-results.sarif
+          category: semgrep
+
+      - name: Upload Semgrep results as artifact
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: semgrep-results
+          path: semgrep-results.sarif
+          retention-days: 30
