@@ -63,7 +63,7 @@ This project implements a REST API with automated testing, code quality checks, 
 
 Watch a 60-second walkthrough of the project:
 
-[![Demo Video](https://img.shields.io/badge/▶_Watch_Demo-YouTube-red?style=for-the-badge&logo=youtube)](YOUR_VIDEO_LINK_HERE)
+[![Demo Video](https://img.shields.io/badge/▶_Watch_Demo-YouTube-red?style=for-the-badge&logo=youtube)](https://youtu.be/_VdTea7Cul8)
 
 *Covers: API endpoints, Swagger UI, CI/CD pipeline, and security scanning*
 
