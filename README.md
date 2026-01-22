@@ -62,7 +62,7 @@ This project implements a REST API with automated testing, code quality checks, 
 
 ## Demo Video
 
-Watch a 60-second walkthrough of the project:
+Watch a 5-minute walkthrough of the project:
 
 [![Demo Video](https://img.shields.io/badge/▶_Watch_Demo-YouTube-red?style=for-the-badge&logo=youtube)](https://youtu.be/_VdTea7Cul8)
 
