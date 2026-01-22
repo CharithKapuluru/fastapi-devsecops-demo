@@ -6,11 +6,11 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Portfolio](https://img.shields.io/badge/View_on_Portfolio-charithkapuluru.com-blue?style=flat)](https://charithkapuluru.com/projects/devsecops-pipeline/)
 
-A FastAPI microservice demonstrating DevSecOps practices including automated security scanning, CI/CD pipelines, and containerization. Designed for Cloud Engineer, DevOps Engineer, and DevSecOps Engineer positions.
+A FastAPI microservice with CI/CD pipelines, security scanning, and Docker. Built to show real-world DevOps and cloud engineering skills.
 
 ## Overview
 
-This project implements a REST API with automated testing, code quality checks, Docker containerization, and integrated security scanning. The CI/CD pipeline automatically runs tests, builds containers, and performs security analysis on every commit.
+A REST API with automated tests, linting, Docker, and security scanning baked in. The CI/CD pipeline runs tests, builds containers, and scans for vulnerabilities on every push.
 
 **Key Features:**
 - RESTful API with FastAPI and automatic OpenAPI documentation
@@ -145,7 +145,7 @@ Returns service health status for load balancers and orchestration platforms.
 ```bash
 GET /items
 ```
-Retrieves all items from in-memory storage.
+Gets all items from memory.
 
 **Response:**
 ```json
@@ -352,7 +352,7 @@ Structured JSON logging for observability:
 }
 ```
 
-Easy integration with CloudWatch, Datadog, Splunk, and other log aggregators.
+Works with CloudWatch, Datadog, Splunk, etc.
 
 ## Future Enhancements
 
