@@ -4,6 +4,7 @@
 [![Semgrep Security](https://github.com/CharithKapuluru/fastapi-devsecops-demo/actions/workflows/semgrep.yml/badge.svg)](https://github.com/CharithKapuluru/fastapi-devsecops-demo/actions/workflows/semgrep.yml)
 [![Trivy Security](https://github.com/CharithKapuluru/fastapi-devsecops-demo/actions/workflows/trivy.yml/badge.svg)](https://github.com/CharithKapuluru/fastapi-devsecops-demo/actions/workflows/trivy.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Portfolio](https://img.shields.io/badge/View_on_Portfolio-charithkapuluru.com-blue?style=flat)](https://charithkapuluru.com/projects/devsecops-pipeline/)
 
 A FastAPI microservice demonstrating DevSecOps practices including automated security scanning, CI/CD pipelines, and containerization. Designed for Cloud Engineer, DevOps Engineer, and DevSecOps Engineer positions.
 
