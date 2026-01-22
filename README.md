@@ -48,6 +48,25 @@ This project implements a REST API with automated testing, code quality checks, 
 └─────────────────────────────────────────────────────────────┘
 ```
 
+## Screenshots
+
+### Swagger UI Documentation
+![Swagger UI](docs/screenshots/swagger-ui.png)
+
+### CI/CD Pipeline (All Checks Passing)
+![CI Pipeline](docs/screenshots/ci-pipeline-passed.png)
+
+### Security Scan Results
+![Security Scan](docs/screenshots/security-scan-results.png)
+
+## Demo Video
+
+Watch a 60-second walkthrough of the project:
+
+[![Demo Video](https://img.shields.io/badge/▶_Watch_Demo-YouTube-red?style=for-the-badge&logo=youtube)](YOUR_VIDEO_LINK_HERE)
+
+*Covers: API endpoints, Swagger UI, CI/CD pipeline, and security scanning*
+
 ## Quick Start
 
 ### Prerequisites
@@ -181,6 +200,18 @@ Content-Type: application/json
 - Semgrep (SAST)
 - Trivy (Container scanning)
 - GitHub Container Registry
+
+## Skills Demonstrated
+
+| Category | Skills |
+|----------|--------|
+| **CI/CD** | GitHub Actions, Automated Pipelines, Container Registry |
+| **Security** | SAST (Semgrep), Container Scanning (Trivy), SARIF Reports |
+| **Containerization** | Docker, Multi-stage Builds, Image Optimization |
+| **API Development** | FastAPI, REST APIs, OpenAPI/Swagger, Pydantic Validation |
+| **Testing** | Pytest, Test Coverage, API Testing |
+| **Code Quality** | Ruff Linting, Code Formatting, Type Hints |
+| **Documentation** | README, API Docs, Inline Comments |
 
 ## Testing
 
